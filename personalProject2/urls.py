@@ -15,7 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import include
+
+from petclub.views import HelloWorld,PersonApiView,PetApiView
+
+#falta importar el ListApiView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('hi', HelloWorld.as_view(), name="helloword"), 
+    path('api-auth/', include('rest_framework.urls')), 
+    path('pets/',PetApiView.as_view(),name="pets"),
+    path('persons/',PersonApiView.as_view(),name='persons'),
+    #path('pets/', )
 ]
